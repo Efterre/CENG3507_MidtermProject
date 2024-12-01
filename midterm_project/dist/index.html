@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>midterm_project</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBS</title>
+  </head>
+  <body>
+    <header class="my-header">
+      <div class="header-icon">
+        <img class="faculty-icon" src="https://cdn-icons-png.flaticon.com/512/5917/5917163.png" alt="faculty-icom">
+        <p class="header-icon-name">EYU</p>
+      </div>
+
+      <h4> STUDENT MANAGEMENT SYSTEM </h4>
+      <div class="header-profile-container">
+        <img class="header-profile-photo" src="https://cdn-icons-png.flaticon.com/512/8847/8847419.png" alt="profile photo">
+        <p>KULLANICI ADI</p>
+      </div>
+    </header>
+    <div class="body-container">
+      <div class="process-menu">
+        <ul class="process-list-container">
+          <li>COURSE PROCESS
+            <ul>
+              <li><button class="course-button" onclick="showContent('course-addition')">Course Addition</button></li>
+              <li><button class="course-button" onclick="showContent('course-deletion')">Course Deletion</button></li>
+              <li><button class="course-button" onclick="showContent('course-selection')">Course Selection</button></li>
+              <li><button class="course-button" onclick="showContent('course-achievement')">Course Achievement</button></li>
+              <li><button class="course-button" onclick="showContent('course-statistics')">Course Statistics</button></li>
+            </ul>
+          </li>
+          <br>
+          <li>STUDENT PROCESS
+            <ul>
+              <li><button class="student-button" onclick="showContent('student-addition')">Student Addition</button></li>
+              <li><button class="student-button" onclick="showContent('student-cancellation')">Student Cancellation</button></li>
+              <li><button class="student-button" onclick="showContent('student-updating')">Student Updating</button></li>
+              <li><button class="student-button" onclick="showContent('student-scoring')">Student Scoring & Updating</button></li>
+              <li><button class="student-button" onclick="showContent('list-student-scores')">List Student Scores</button></li>
+              <li><button class="student-button" onclick="showContent('list-student-all-scores')">List Student All Scores</button></li>
+              <li><button class="student-button" onclick="showContent('list-student-by-gpa')">List Student by GPA</button></li>
+              <li><button class="student-button" onclick="showContent('list-student-by-grade')">List Student by Letter Grade</button></li>
+              <li><button class="student-button" onclick="showContent('search-student')">Search Student</button></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="body-right-side">
+
+        <div id="course-addition" class="content" style="display: none;">
+          <h2>Course Addition</h2>
+            
+            <label for="course-code">Course Code:</label>
+            <input type="text" id="course-code" name="course-code" required>
+            <br>
+
+            <label for="course-name">Course Name:</label>
+            <input type="text" id="course-name" name="course-name" required>
+            <br>
+
+            <label for="profesor-name">Profesor Name:</label>
+            <input type="text" id="profesor-name" name="profesor-name" required>
+            <br>
+
+            <button type="addition-submit" >Add Course</button>
+          </form>
+          <div id="courses-container">
+            <table id="course-addition-table" border="1" style="width: 100%; text-align: left;">
+              <thead>
+                <tr>
+                  <th>Course Code</th>
+                  <th>Course Name</th>
+                  <th>Professor Name</th>
+                  <th>Student Count</th>
+                </tr>
+              </thead>
+              <tbody id="course-addition-table-body">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="course-deletion" class="content" style="display: none;">
+          <h2>Course Deletion</h2>
+          <form id="course-deletion-form">
+              <label for="delete-course-id-or-name">Enter Course Code:</label>
+              <input type="text" id="delete-course-code" name="delete-course-code" required>
+              <br>
+              <button type="delete-submit">Delete Course</button>
+          </form>
+
+
+          <table border="1" id="course-deletion-table">
+              <thead>
+                  <tr>
+                      <th>Course Code</th>
+                      <th>Course Name</th>
+                      <th>Professor Name</th>
+                      <th>Number of Students</th>
+                  </tr>
+              </thead>
+              <tbody id="course-deletion-table-body">
+
+              </tbody>
+          </table>
+        </div>
+
+        <div id="course-selection" class="content" style="display: none;">
+        <h2>Course Selection</h2>
+          
+        <div class="student-select-in-course-selection">
+          <form id="student-addition-form">
+            <label for="course-selection-student-id">Student ID:</label>
+            <input type="text" id="course-selection-student-id" name="course-selection-student-id" required>
+          </form>
+          <button type="student-selection-submit" >Select Student</button>
+        </div> 
+        <table id="available-courses-table" border="1" style="width: 100%; text-align: left;">
+            <thead>
+              <tr>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Professor Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="course-selection-body">
+
+            </tbody>
+          </table>
+          <div>
+          <h2>Selected Courses</h2>
+
+        <!-- Selected Courses Table -->
+          <table id="courses-selection-table" border="1" style="width: 100%; text-align: left;">
+              <thead>
+                  <tr>
+                      <th>Course Code</th>
+                      <th>Course Name</th>
+                      <th>Professor Name</th>
+                  </tr>
+              </thead>
+              <tbody id="selected-course-body">
+
+              </tbody>
+          </table>
+        </div>
+              
+        </div>
+
+        <div id="course-achievement" class="content" style="display: none;">
+          <h2>Course Achievement</h2>  
+          <label for="coursePicker">Bir kurs seçin:</label>
+          <select id="coursePicker" onchange="showCourseAchievement()">
+            <option value="">-- Kurs Seçin --</option>
+          </select>
+          <div id="achievement-table-id" border="1" style="width: 100%; text-align: left;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student FullName</th>
+                  <th>Midterm Score</th>
+                  <th>Final Score</th>
+                  <th>Letter Grade</th>
+                </tr>
+              </thead>
+              <tbody id="achievement-table-body">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="course-statistics" class="content" style="display: none;">
+          <h2>Course Statistics Form Here</h2>
+          <label for="coursePickerStatistic">Bir kurs seçin:</label>
+          <select id="coursePickerStatistic" onchange="showCourseStatistics()">
+            <option value="course-list-achievement">-- Kurs Seçin --</option>
+          </select>
+
+          <!-- Butonlar -->
+          <button id="sortPassed">Show Passed</button>
+          <button id="sortFailed">Show Failed</button>
+
+          <!-- Tablo -->
+          <table>
+            <thead>
+              <tr>
+                <th>Student Fullname</th>
+                <th>Grade</th>
+                <th>State</th>
+              </tr>
+            </thead>
+            <tbody id="achievementTable-body">
+
+            </tbody>
+          </table>
+        </div>
+
+        <div id="student-addition" class="content" style="display: none">
+        <h2>Student Addition</h2>
+          <form id="student-addition-form">
+            <label for="student-id">Student ID:</label>
+            <input type="text" id="student-id" name="student-id" required>
+            <br>
+            <label for="student-name">Name:</label>
+            <input type="text" id="student-name" name="student-name" required>
+            <br>
+            <label for="student-surname">Surname:</label>
+            <input type="text" id="student-surname" name="student-surname" required>
+            <br>
+            <button type="submit">Add Student</button>
+          </form>
+
+          <h2>All Students</h2>
+          <table id="student-list-table" border="1" style="width: 100%; text-align: left;">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Taken Course</th>
+                <th>GPA</th>
+              </tr>
+            </thead>
+            <tbody id="student-list-body">
+              <!-- Dynamic rows will be added here -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="student-cancellation" class="content" style="display: none">
+          <h2>Student Cancellation</h2>
+
+          <form id="student-cancellation-form">
+            <label for="cancel-student-id">Student ID:</label>
+            <input type="text" id="cancel-student-id" placeholder="Enter Student ID" />
+            <button type="submit">Remove Student</button>
+          </form>
+
+
+          <h3>Current Student List</h3>
+          <table border="1" style="width: 100%; text-align: left;">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Student Surname</th>
+                <th>Student Course List</th>
+                <th>GPA</th>
+              </tr>
+            </thead>
+            <tbody id="student-cancelation-body">
+
+            </tbody>
+          </table>
+        </div>
+
+        <div id="student-updating" class="content" style="display: none">
+          <h2>Student Updating</h2>
+
+          <form id="student-update-form">
+            <label for="student-update-id">Student ID:</label>
+            <input type="text" id="student-update-id" required />
+
+            <label for="student-update-name">Student Name:</label>
+            <input type="text" id="student-update-name" />
+
+            <label for="student-update-surname">Student Surname:</label>
+            <input type="text" id="student-update-surname" />
+
+            <button type="submit">Update Student</button>
+          </form>
+
+          <h3>Current Student List</h3>
+
+          <!-- Student List Table -->
+          <table id="student-list-table" border="1" style="width: 100%; text-align: left;">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Student Surname</th>
+              </tr>
+            </thead>
+            <tbody id="student-update-list-body">
+
+            </tbody>
+          </table>
+        </div>
+
+        <div id="student-scoring" class="content" style="display: none;">
+          <h2>Student Scoring</h2>
+          <label for="studentScoring">Bir kurs seçin:</label>
+          
+          <form id="student-addition-form"> 
+            <label for="score-student-in-course">Enter Course Code:</label>
+            <input type="text" id="score-student-in-course" name="score-student-in-course" required>
+            <br>  
+            <label for="student-id">Student ID:</label>
+            <input type="text" id="student-id" name="student-id" required>
+            <br>
+            <label for="student-name">Name:</label>
+            <input type="text" id="student-name" name="student-name" >
+            <br>
+            <label for="student-surname">Surname:</label>
+            <input type="text" id="student-surname" name="student-surname" >
+            <br>
+            <label for="student-midterm-score">Midterm Score:</label>
+            <input type="text" id="student-midterm-score" name="student-midterm-score" >
+            <br>
+            <label for="student-final-score">Final Score:</label>
+            <input type="text" id="student-final-score" name="student-final-score" >
+            <br>
+            <button type="submit">Score Student</button>
+          </form>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Student Surname</th>
+                  <th>Student Midterm Score</th>
+                  <th>Student Final Score</th>
+                </tr>
+              </thead>
+              <tbody id="student-scoring-list-body">
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="list-student-scores" class="content" style="display: none;">
+          <label for="studentScores">Select Student</label>
+          <select id="studentScores" onchange="showScoresOfStudent()">
+            <option value="student-score-list"> Select Student </option>
+          </select>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Course ID</th>
+                  <th>Course Name</th>
+                  <th>Student Midterm Score</th>
+                  <th>Student Final Score</th>
+                  <th>Student Letter Grade</th>
+                </tr>
+              </thead>
+              <tbody id="student-course-score-list-body">
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div id="list-student-all-scores" class="content" style="display: none;">
+          <label for="studentScoring">Select Course</label>
+          <select id="studentScoring" onchange="showCourseOfAllStudent()">
+            <option value="student-scoring-list"> Select Course </option>
+          </select>
+          <form id="student-addition-form">
+            <label for="student-id">Student ID:</label>
+            <input type="text" id="student-id" name="student-id" required>
+            <br>
+            <label for="student-name">Name:</label>
+            <input type="text" id="student-name" name="student-name" required>
+            <br>
+            <label for="student-surname">Surname:</label>
+            <input type="text" id="student-surname" name="student-surname" required>
+            <br>
+            <label for="student-midterm-score">Midterm Score:</label>
+            <input type="text" id="student-surname" name="student-surname" required>
+            <br>
+            <label for="student-final-score">Final Score:</label>
+            <input type="text" id="student-surname" name="student-surname" required>
+            <br>
+            <button type="submit">Add Student</button>
+          </form>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Student Surname</th>
+                  <th>Student Midterm Score</th>
+                  <th>Student Final Score</th>
+                  <th>Student Letter Grade</th>
+                </tr>
+              </thead>
+              <tbody id="all-student-score-list-body">
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div id="list-student-by-gpa" class="content" style="display: none;">
+          <h2>List Student by GPA</h2>
+          <label for="studentGPA">Select Course</label>
+          <select id="studentGPA" onchange="showGPAOfStudent()">
+            <option value="student-gpa-list"> Select Course </option>
+          </select>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Student Surname</th>
+                  <th>Student GPA</th>
+                </tr>
+              </thead>
+              <tbody id="student-gpa-list-body">
+                
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+        
+        <div id="list-student-by-grade" class="content" style="display: none;">
+          <h2>List Student by Letter Grade</h2>
+          <label for="studentLetterGrade">Select Course</label>
+          <select id="studentLetterGrade" onchange="showLetterGradeOfStudent()">
+            <option value="student-letter-grade-list"> Select Course </option>
+          </select>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>Student Name</th>
+                  <th>Student Surname</th>
+                  <th>Student Letter Grade</th>
+                </tr>
+              </thead>
+              <tbody id="student-letter-grade-list-body">
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div id="search-student" class="content" style="display: none;">
+          <h2>Student Search</h2>
+          <form id="student-search-form">
+              <label for="student-search-id-or-name">Enter Student ID or Name:</label>
+              <input type="text" id="student-search-id-or-name" name="student-search-id-or-name" required>
+              <br>
+              <button type="submit">Student Search</button>
+            
+          </form>
+
+
+          <table border="1" id="student-search-table">
+              <thead>
+                  <tr>
+                      <th>Student ID</th>
+                      <th>Student Name</th>
+                      <th>Student Surname</th>
+                      <th>All Courses ID</th>
+                      <th>Student GPA</th>
+                  </tr>
+              </thead>
+              <tbody id="student-search-table-body">
+
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
